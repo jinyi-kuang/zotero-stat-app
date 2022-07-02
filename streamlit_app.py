@@ -4,6 +4,7 @@ import json
 import streamlit as st
 import pandas as pd 
 import numpy as np
+import pyzotero
 from pyzotero import zotero
 
 def login_ztr(library_id, library_type, api_key):
