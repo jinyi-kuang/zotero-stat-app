@@ -97,8 +97,5 @@ if submitted:
     st.write('## The most recently added/modified 10 items in your library are')
     st.dataframe(data=top_items, width=None, height=None)
     
-    
-    
-
 if not submitted:
     st.stop()
