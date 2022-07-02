@@ -1,13 +1,10 @@
 import os
 import json
-import importlib_metadata
 import streamlit as st
 import pandas as pd 
 import numpy as np
+import pyzotero
 from pyzotero import zotero
-
-#library_id = "5338560"
-#api_key = "7KP3EZAufApf1GfDB1u2vMsU"
 
 def login_ztr(library_id, library_type, api_key):
     ztr = zotero.Zotero(library_id, library_type, api_key)
@@ -15,8 +12,10 @@ def login_ztr(library_id, library_type, api_key):
 
 def get_top_items(ztr, n):
     items = ztr.top(limit=n)
-    for item in items:
-        print('Item: %s | Key: %s' % (item['data']['itemType'], item['data']['key']))
+    df_raw=pd.json_normalize(items)
+    df=df_raw[['data.itemType','meta.creatorSummary','data.title','data.date','data.publicationTitle', 'data.DOI','data.libraryCatalog']]
+    df.columns = ['type','authors','title','date', 'journal', 'doi', 'catalog']
+    return df
 
 def get_num_total_items(ztr):
     n = ztr.count_items()
@@ -73,15 +72,16 @@ with form:
     submitted = st.form_submit_button(label="Submit")
 
 if submitted:
-    st.success("Thanks! I am working on getting your stats.")
+    st.success("Thanks!")
     ztr = login_ztr(library_id, library_type, api_key)
 
     # display total number of items in the zotero library
     total_n = get_num_total_items(ztr)
     st.write("## The total number of items in your library is ", total_n)
-    n_top = st.slider("choose the number of top items to display", min_value=0, max_value=50, step=1, value=5)
-    top_items =  get_top_items(ztr, n_top)
-    st.write('## The  top items in your library are', top_items)
+    #n_top = st.slider("choose the number of top items to display", min_value=0, max_value=50, step=1, value=5)
+    top_items =  get_top_items(ztr, 10)
+    st.write('## The  top 10 items in your library are')
+    st.dataframe(data=top_items, width=None, height=None)
     
 
 if not submitted:
