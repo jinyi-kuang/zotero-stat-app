@@ -1,3 +1,5 @@
+[![Open in Streamlit](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://jinyi-kuang-zotero-stat-app-streamlit-app-f6ehb4.streamlitapp.com/)
+
 # Track your reading statistics in Zotero
 
 This app will show
