@@ -52,7 +52,7 @@ with form:
     ### inout userID
     st.write("""
     ## Step 1: Get your user ID
-    - Your need to login to your zotero [here](https://www.zotero.org/user/login) to get your zotero userID and API key.
+    - Your need to login to your Zotero [here](https://www.zotero.org/user/login) to get your zotero userID and API key.
     - Your personal library ID is available [here](https://www.zotero.org/settings/keys), 
     - You can see a small line read like "Your userID for use in API calls is XXXXXXX."
     """)
@@ -89,7 +89,7 @@ if submitted:
     st.write("## The total number of items in your library is ", total_n)
 
     items_by_collections = get_num_items_by_collection(ztr)
-    st.write('## The numbers of items in each collections are')
+    st.write('## The numbers of items in each collection are')
     st.dataframe(data=items_by_collections, width=None, height=None)
 
     top_items =  get_top_items(ztr, 10)

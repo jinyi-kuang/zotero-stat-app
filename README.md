@@ -1,8 +1,6 @@
-# app
-build an interactive web app to count how many papers you have read in zotero
+# Track your reading statistics in Zotero
 
-This app will help you 
-- track which paper you have read 
-- calculate the proportion of papers you have read
-
-
+This app will show
+- the total number of items in your Zotero library
+- the number of items in each collection
+- the top 10 recently added/modified items in your library
